@@ -1,0 +1,8 @@
+-r base.txt
+
+psycopg2-binary==2.9
+flake8==4.0.1
+isort==5.9.3
+black>=21.9b0
+
+factory-boy==3.2.0
