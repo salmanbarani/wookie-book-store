@@ -76,10 +76,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-# TODO Uncomment these lines when docker was added.
-
-# DATABASES = {"default": env.db("DATABASE_URL")}
-# DATABASES["default"]["ATOMIC_REQUESTS"] = True
+DATABASES = {"default": env.db("DATABASE_URL")}
+DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
 
 PASSWORD_HASHERS = [

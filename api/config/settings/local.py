@@ -10,12 +10,4 @@ SECRET_KEY = env(
     default="VoQE5G62Qu1Sk8cmBMa8V8D4nYhWazjaEoH9p9wWGPF4Pv23A3M68Wtme2BpHSwt",
 )
 
-ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "172.23.0.4"]
-
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': ROOT_DIR / 'db.sqlite3',
-    }
-}
+ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
