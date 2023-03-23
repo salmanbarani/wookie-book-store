@@ -8,3 +8,7 @@ black>=21.9b0
 factory-boy==3.2.0
 
 ipython==7.24.1
+
+argh==0.26.2
+pyYAML==6.0
+watchdog==2.1.6
