@@ -41,7 +41,7 @@ LOCAL_APPS = [
     'core_apps.users',
     'core_apps.authors',
     'core_apps.common',
-
+    'core_apps.books',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

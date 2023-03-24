@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import Group
 
 from .managers import CustomUserManager
 
@@ -42,3 +43,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def short_name(self):
         return self.first_name
+
+
+# Specifing BannedUsers group to restrict some bad users like "_Darth Vader_"
+Group.objects.get_or_create(name="BannedUsers")
