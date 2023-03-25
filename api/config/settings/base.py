@@ -197,6 +197,7 @@ CORS_URLS_REGEX = r"^/api/.*$"
 
 AUTH_USER_MODEL = "users.User"
 AUTH_USER_FACTORY = "core_apps.users.factories.UserFactory"
+BANNED_USERS_GROUP_NAME = "BannedUsers"
 
 CELERY_BROKER_URL = env("CELERY_BROKER")
 CELERY_RESULT_BACKEND = env("CELERY_BACKEND")
