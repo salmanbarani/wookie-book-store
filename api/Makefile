@@ -28,7 +28,7 @@ down-v:
 volume:
 	docker volume inspect api_local_postgres_data
 
-authors-db:
+wookie-db:
 	docker compose -f local.yml exec postgres psql --username=salman --dbname=authors-live
 
 test:
