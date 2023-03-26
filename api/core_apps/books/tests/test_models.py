@@ -1,6 +1,7 @@
-from django.test import TestCase
 from decimal import Decimal
+
 import pytest
+from django.test import TestCase
 
 
 @pytest.mark.usefixtures("book")

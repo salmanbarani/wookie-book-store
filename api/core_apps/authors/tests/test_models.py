@@ -1,12 +1,11 @@
-from django.test import TestCase
 import pytest
-from django.core.validators import validate_email
+from django.test import TestCase
+
 from ..models import Profile
 
 
 @pytest.mark.usefixtures("user")
 class UserTests(TestCase):
-
     def test_profile_is_created_when_user_is_created(self):
         self.assertIsNotNone(self.user.profile)
 

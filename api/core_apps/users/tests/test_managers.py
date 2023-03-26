@@ -1,5 +1,5 @@
 from django.test import TestCase
-import pytest
+
 from core_apps.users import factories, models
 
 
@@ -9,13 +9,12 @@ def sample_user_data():
         "last_name": factories.UserFactory.last_name,
         "username": factories.UserFactory.last_name,
         "email": factories.UserFactory.build().email,
-        "password": models.User.objects.make_random_password()
+        "password": models.User.objects.make_random_password(),
     }
 
 
 class CustomUserTests(TestCase):
     def test_create_user(self):
-
         sample_data = sample_user_data()
         user = models.User.objects.create_user(**sample_data)
 
@@ -31,9 +30,7 @@ class CustomUserTests(TestCase):
 
     def test_create_superuser(self):
         super_user_data = sample_user_data()
-        user = models.User.objects.create_superuser(
-            **super_user_data
-        )
+        user = models.User.objects.create_superuser(**super_user_data)
 
         self.assertTrue(user.is_staff)
         self.assertTrue(user.is_superuser)

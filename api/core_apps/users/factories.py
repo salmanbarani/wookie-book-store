@@ -1,6 +1,5 @@
-from django.conf import settings
 import factory
-import pytz
+from django.conf import settings
 from faker import Faker
 
 fake = Faker()

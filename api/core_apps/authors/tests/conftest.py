@@ -1,4 +1,5 @@
 import pytest
+
 from core_apps.users.factories import UserFactory
 
 

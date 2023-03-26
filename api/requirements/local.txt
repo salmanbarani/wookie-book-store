@@ -12,3 +12,10 @@ ipython==7.24.1
 argh==0.26.2
 pyYAML==6.0
 watchdog==2.1.6
+pytest-django==4.4.0
+Faker==11.3.0
+pytest-cov==2.12.1
+pytest==6.2.4
+pytest-env==0.6.2
+pytest-xdist==2.2.1
+coverage==5.5

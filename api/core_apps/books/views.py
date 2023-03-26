@@ -1,11 +1,12 @@
-from rest_framework import viewsets, response, status
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import viewsets
+from rest_framework.exceptions import PermissionDenied
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+
 from .models import Book
-from .serializers import BookSerializer
 from .pagination import BookPagination
 from .permissions import IsMemberOfBannedGroup
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from rest_framework.exceptions import PermissionDenied
-from django_filters.rest_framework import DjangoFilterBackend
+from .serializers import BookSerializer
 
 
 class BookOwnershipMixin(viewsets.ModelViewSet):
@@ -22,11 +23,12 @@ class BookViewSet(BookOwnershipMixin):
     permission_classes = [IsAuthenticatedOrReadOnly, IsMemberOfBannedGroup]
 
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = {'title': ['exact', 'icontains'],
-                        'author__first_name': ['exact', 'icontains'],
-                        'author__last_name': ['exact', 'icontains'],
-                        'price': ['lte', 'gte'],
-                        }
+    filterset_fields = {
+        "title": ["exact", "icontains"],
+        "author__first_name": ["exact", "icontains"],
+        "author__last_name": ["exact", "icontains"],
+        "price": ["lte", "gte"],
+    }
 
     def get_queryset(self):
         queryset = super().get_queryset()

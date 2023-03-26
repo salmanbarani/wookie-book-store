@@ -1,6 +1,7 @@
 import decimal
-from django.db import models
+
 from django.core import validators
+from django.db import models
 
 
 class PositiveDecimalField(models.DecimalField):

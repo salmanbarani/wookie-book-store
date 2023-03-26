@@ -14,8 +14,9 @@ User = get_user_model()
 
 class ProfileListAPIView(generics.ListAPIView):
     """
-        Endpoint to get list of authors profile.
+    Endpoint to get list of authors profile.
     """
+
     serializer_class = ProfileSerializer
     permission_classes = [permissions.AllowAny]
     queryset = Profile.objects.all()
@@ -25,8 +26,9 @@ class ProfileListAPIView(generics.ListAPIView):
 
 class ProfileDetailAPIView(generics.RetrieveAPIView):
     """
-        Endpoint to get authors profile detail
+    Endpoint to get authors profile detail
     """
+
     permission_classes = [permissions.AllowAny]
     queryset = Profile.objects.select_related("user")
     serializer_class = ProfileSerializer
@@ -45,8 +47,9 @@ class ProfileDetailAPIView(generics.RetrieveAPIView):
 
 class UpdateProfileAPIView(APIView):
     """
-        Endpoint to update authors profile
+    Endpoint to update authors profile
     """
+
     permission_classes = [permissions.IsAuthenticated]
     queryset = Profile.objects.select_related("user")
     renderer_classes = [ProfileJSONRenderer]

@@ -2,7 +2,6 @@ from rest_framework.views import exception_handler
 
 
 def common_exception_handler(exc, context):
-
     response = exception_handler(exc, context)
 
     handlers = {

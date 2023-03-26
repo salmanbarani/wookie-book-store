@@ -4,8 +4,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth.models import Group
-from django.conf import settings
+
 from .managers import CustomUserManager
 
 
@@ -25,8 +24,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     date_joined = models.DateTimeField(default=timezone.now)
 
-    USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["username", "first_name", "last_name"]
+    USERNAME_FIELD = "username"
+    REQUIRED_FIELDS = ["email", "first_name", "last_name"]
 
     objects = CustomUserManager()
 
@@ -43,7 +42,3 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def short_name(self):
         return self.first_name
-
-
-# Specifing BannedUsers group to restrict some bad users like "_Darth Vader_"
-Group.objects.get_or_create(name=settings.BANNED_USERS_GROUP_NAME)

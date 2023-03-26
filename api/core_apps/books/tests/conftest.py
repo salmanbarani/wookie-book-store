@@ -1,8 +1,10 @@
 import pytest
-from core_apps.users.factories import UserFactory
-from django.contrib.auth.models import Group
-from .. import factories
 from django.conf import settings
+from django.contrib.auth.models import Group
+
+from core_apps.users.factories import UserFactory
+
+from .. import factories
 
 
 @pytest.fixture(scope="class")

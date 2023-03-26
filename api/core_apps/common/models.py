@@ -1,4 +1,7 @@
 import uuid
+
+from django.conf import settings
+from django.contrib.auth.models import Group
 from django.db import models
 
 
@@ -11,3 +14,8 @@ class TimeStampedUUIDModel(models.Model):
     class Meta:
         abstract = True
         ordering = ["-created_at", "-updated_at"]
+
+
+def create_groups():
+    # Specifing BannedUsers group to restrict some bad users like "_Darth Vader_"
+    Group.objects.get_or_create(name=settings.BANNED_USERS_GROUP_NAME)

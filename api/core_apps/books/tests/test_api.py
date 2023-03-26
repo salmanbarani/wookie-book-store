@@ -1,9 +1,11 @@
-from django.test import TestCase
-from rest_framework.test import APIClient
 import pytest
+from django.test import TestCase
 from rest_framework import status
-from ..models import Book
+from rest_framework.test import APIClient
+
 from core_apps.users.factories import UserFactory
+
+from ..models import Book
 
 PROFILE_LIST_URL = "/api/v1/profiles/all/"
 PROFILE_DETAIL_URL = "/api/v1/profiles/user/"
@@ -11,16 +13,11 @@ PROFILE_UPDATE_URL = "/api/v1/profiles/update/"
 
 PAGE_SIZE = 5
 
-BOOK_URL = '/api/v1/books/'
+BOOK_URL = "/api/v1/books/"
 
 
 def get_payload(user, title="title", description="description", price="55.50"):
-    return {
-        "author": user,
-        "title": title,
-        "description": description,
-        "price": price
-    }
+    return {"author": user, "title": title, "description": description, "price": price}
 
 
 def add_books_to_user(user, size=3):
@@ -48,7 +45,7 @@ class UserAuthenticationTests(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         book_title = self.book.title
-        response_title = response.json()['title']
+        response_title = response.json()["title"]
         self.assertEqual(book_title, response_title)
 
     def test_publish_not_authenticated_book(self):
@@ -69,13 +66,13 @@ class UserAuthenticationTests(TestCase):
 
     def test_publish_book_successful(self):
         payload = get_payload(self.user)
-        payload.pop('author')
+        payload.pop("author")
 
         response = self.private_client.post(BOOK_URL, payload)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         for key in payload:
             self.assertEqual(payload[key], response.json()[key])
-        self.assertEqual(self.user.full_name, response.json()['author'])
+        self.assertEqual(self.user.full_name, response.json()["author"])
 
     def test_unpublish_not_owner_book(self):
         client = APIClient()
@@ -97,7 +94,7 @@ class UserAuthenticationTests(TestCase):
 
     def test_update_bad_book_data(self):
         payload = get_payload(self.user)
-        payload['price'] = "asdfasdf"
+        payload["price"] = "asdfasdf"
         client = APIClient()
         client.force_authenticate(self.book.author)
         response = client.patch(f"{BOOK_URL}{self.book.pkid}/", data=payload)
@@ -120,7 +117,6 @@ class UserAuthenticationTests(TestCase):
             self.assertEqual(payload[key], response.json()[key])
 
     def test_search_by_filter(self):
-
         user_books = add_books_to_user(self.user)
         filter_fields = {
             "format": "json",
