@@ -1,63 +1,65 @@
+COMPOSE_RUN= docker compose -f local.yml
+
 build:
-	docker compose -f local.yml up --build -d --remove-orphans
+	$(COMPOSE_RUN) up --build -d --remove-orphans
 
 up:
-	docker compose -f local.yml up -d
+	$(COMPOSE_RUN) up -d
 
 down:
-	docker compose -f local.yml down
+	$(COMPOSE_RUN) down
 
 show_logs:
-	docker compose -f local.yml logs
+	$(COMPOSE_RUN) logs
 
 migrate:
-	docker compose -f local.yml run --rm api python3 manage.py migrate
+	$(COMPOSE_RUN) run --rm api python3 manage.py migrate
 
 makemigrations:
-	docker compose -f local.yml run --rm api python3 manage.py makemigrations
+	$(COMPOSE_RUN) run --rm api python3 manage.py makemigrations
 
 collectstatic:
-	docker compose -f local.yml run --rm api python3 manage.py collectstatic --no-input --clear
+	$(COMPOSE_RUN) run --rm api python3 manage.py collectstatic --no-input --clear
 
 superuser:
-	docker compose -f local.yml run --rm api python3 manage.py createsuperuser
+	$(COMPOSE_RUN) run --rm api python3 manage.py createsuperuser
 
 down-v:
-	docker compose -f local.yml down -v
+	$(COMPOSE_RUN) down -v
 
 volume:
 	docker volume inspect api_local_postgres_data
 
 authors-db:
-	docker compose -f local.yml exec postgres psql --username=salman --dbname=authors-live
+	$(COMPOSE_RUN) exec postgres psql --username=salman --dbname=authors-live
 
 test:
-	docker compose -f local.yml run --rm api pytest --disable-warnings
+	$(COMPOSE_RUN) run --rm api pytest --disable-warnings
 
 sh:
-	docker compose -f local.yml run --rm api sh
+	$(COMPOSE_RUN) run --rm api sh
 
 shell:
-	docker compose -f local.yml run --rm api python3 manage.py shell_plus --ipython --quiet-load
+	$(COMPOSE_RUN) run --rm api python3 manage.py shell_plus --ipython --quiet-load
 
 flake8:
-	docker compose -f local.yml exec api flake8 .
+	$(COMPOSE_RUN) exec api flake8 .
 
 black-check:
-	docker compose -f local.yml exec api black --check --exclude=migrations .
+	$(COMPOSE_RUN) exec api black --check --exclude=migrations .
 
 black-diff:
-	docker compose -f local.yml exec api black --diff --exclude=migrations .
+	$(COMPOSE_RUN) exec api black --diff --exclude=migrations .
 
 black:
-	docker compose -f local.yml exec api black --exclude=migrations .
+	$(COMPOSE_RUN) exec api black --exclude=migrations .
 
 isort-check:
-	docker compose -f local.yml exec api isort . --check-only --skip env --skip migrations
+	$(COMPOSE_RUN) exec api isort . --check-only --skip env --skip migrations
 
 isort-diff:
-	docker compose -f local.yml exec api isort . --diff --skip env --skip migrations
+	$(COMPOSE_RUN) exec api isort . --diff --skip env --skip migrations
 
 isort:
-	docker compose -f local.yml exec api isort . --skip env --skip migrations	
+	$(COMPOSE_RUN) exec api isort . --skip env --skip migrations	
 
