@@ -32,7 +32,6 @@ class BookViewSet(BookOwnershipMixin):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        print(self.request.query_params)
         return queryset
 
     def perform_create(self, serializer):

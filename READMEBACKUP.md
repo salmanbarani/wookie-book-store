@@ -1,6 +1,3 @@
-- to backup postgres using the following command `docker compose -f local.yml exec postgres backup`
-- to see all backups history type `docker compose -f local.yml exec postgres backups`
-
 ### Objective
 
 Your assignment is to implement a bookstore REST API using Python and any framework. While we will allow the use of any framework you prefer (incl. none at all) we would be grateful if you could complete the assignment in FastAPI or Django if you prefer.
