@@ -32,11 +32,6 @@ staticfiles
 
 zappa_scripts/
 
-postpay/*
-!postpay/*.py
-!postpay/users
-!postpay/sidebar
-!postpay/templates
 
 venv/
 /.devcontainer
